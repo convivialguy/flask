@@ -426,6 +426,13 @@ def MF(code):
     q = mf.get_scheme_quote(str(code))
     return q['nav']
 
+@app.route("/MF1/<code>",methods=['POST','GET'])
+def MF1(code):
+    mf = Mftool()
+    q = mf.get_scheme_historical_nav(str(code),as_Dataframe=True)
+    return str(q.iloc[0, 0])
+
+
 @app.route("/Stock/<code>",methods=['POST','GET'])
 def Stock(code):
     #price = stock_info.get_live_price(code)
